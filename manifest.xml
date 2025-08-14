@@ -61,8 +61,7 @@
             <MessageReadCommandSurface>
               <ExtensionPoint>
                 <OfficeTab id="TabDefault">
-                  <Group id="grpDefender" label="Defender" icon="https://github.com/RobinPaulThompson/outlook-quarantine
-ine/assets/icon-32.png">
+                  <Group id="grpDefender" label="Defender" icon="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-32.png">
                     <Control xsi:type="Button" id="btnOpenQuarantine">
                       <Label resid="resLabelOpen"/>
                       <Supertip>
