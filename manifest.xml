@@ -2,16 +2,18 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
            xsi:type="MailApp">
-  <Id>2a6a1c0b-2e8d-4d5b-9f7b-6f0fdefender000</Id>
+
+  <Id>2a6a1c0b-2e8d-4d5b-9f7b-6f0fde000000</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>Your Org</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Defender Quarantine"/>
   <Description DefaultValue="Open Microsoft Defender portal → Quarantine directly from Outlook."/>
-  <IconUrl DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-80.png"/>
+
+  <IconUrl DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://security.microsoft.com/quarantine"/>
 
   <Hosts>
@@ -27,14 +29,13 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/src/taskpane.html"/>
+        <SourceLocation DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/src/taskpane.html"/>
+        <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
       <TabletSettings>
-        <SourceLocation DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/src/taskpane.html"/>
+        <SourceLocation DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/src/taskpane.html"/>
+        <RequestedHeight>250</RequestedHeight>
       </TabletSettings>
-      <PhoneSettings>
-        <SourceLocation DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/src/taskpane.html"/>
-      </PhoneSettings>
     </Form>
   </FormSettings>
 
@@ -46,7 +47,8 @@
 
   <DisableEntityHighlighting>true</DisableEntityHighlighting>
 
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides">
+
     <Requirements>
       <bt:Sets DefaultMinVersion="1.5">
         <bt:Set Name="Mailbox"/>
@@ -55,52 +57,49 @@
 
     <Hosts>
       <Host xsi:type="MailHost">
-        <Runtimes>
-          <Runtime resid="TaskPaneUrl" lifetime="long"/>
-          <Override>
-            <MessageReadCommandSurface>
-              <ExtensionPoint>
-                <OfficeTab id="TabDefault">
-                  <Group id="grpDefender" label="Defender" icon="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-32.png">
-                    <Control xsi:type="Button" id="btnOpenQuarantine">
-                      <Label resid="resLabelOpen"/>
-                      <Supertip>
-                        <Title resid="resTipTitle"/>
-                        <Description resid="resTipDesc"/>
-                      </Supertip>
-                      <Icon>
-                        <bt:Image size="16" resid="resIcon16"/>
-                        <bt:Image size="32" resid="resIcon32"/>
-                        <bt:Image size="80" resid="resIcon80"/>
-                      </Icon>
-                      <Action xsi:type="ExecuteFunction">
-                        <FunctionName>openQuarantine</FunctionName>
-                      </Action>
-                    </Control>
-                  </Group>
-                </OfficeTab>
-              </ExtensionPoint>
-            </MessageReadCommandSurface>
-          </Override>
-        </Runtimes>
-
         <DesktopFormFactor>
+
+          <!-- Function file must be declared here, before ExtensionPoint -->
           <FunctionFile resid="CommandsUrl"/>
+
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="grpDefender">
+                <Label resid="resLabelGroup"/>
+                <Control xsi:type="Button" id="btnOpenQuarantine">
+                  <Label resid="resLabelOpen"/>
+                  <Supertip>
+                    <Title resid="resTipTitle"/>
+                    <Description resid="resTipDesc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="resIcon16"/>
+                    <bt:Image size="32" resid="resIcon32"/>
+                    <bt:Image size="80" resid="resIcon80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>openQuarantine</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
     </Hosts>
 
     <Resources>
       <bt:Images>
-        <bt:Image id="resIcon16" DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-16.png"/>
-        <bt:Image id="resIcon32" DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-32.png"/>
-        <bt:Image id="resIcon80" DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/assets/icon-80.png"/>
+        <bt:Image id="resIcon16" DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/assets/icon-16.png"/>
+        <bt:Image id="resIcon32" DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/assets/icon-32.png"/>
+        <bt:Image id="resIcon80" DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="TaskPaneUrl" DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/src/taskpane.html"/>
-        <bt:Url id="CommandsUrl" DefaultValue="https://github.com/RobinPaulThompson/outlook-quarantine/src/commands.html"/>
+        <bt:Url id="TaskPaneUrl" DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/src/taskpane.html"/>
+        <bt:Url id="CommandsUrl" DefaultValue="https://robinpaulthompson.github.io/outlook-quarantine/src/commands.html"/>
       </bt:Urls>
       <bt:ShortStrings>
+        <bt:String id="resLabelGroup" DefaultValue="Defender"/>
         <bt:String id="resLabelOpen" DefaultValue="Open Quarantine"/>
         <bt:String id="resTipTitle" DefaultValue="Open Defender Quarantine"/>
       </bt:ShortStrings>
@@ -108,5 +107,6 @@
         <bt:String id="resTipDesc" DefaultValue="Launches security.microsoft.com/quarantine in a secure dialog window."/>
       </bt:LongStrings>
     </Resources>
+
   </VersionOverrides>
 </OfficeApp>
